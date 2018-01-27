@@ -22,33 +22,33 @@ public interface EmployeeService {
 	 * @param map
 	 * @return
 	 */
-	public List<EmployeeModel> getUserList(String userName, String roleType, int start, int size);
+	public List<EmployeeModel> getEmployeeList(String userCode, int start, int size);
 	
 	/**
 	 * 获取用户数据总数
 	 * @param map
 	 * @return
 	 */
-	public Long getTotal(String userName, String roleType, int start, int size);
+	public Long getTotal(String userCode, int start, int size);
 	
 	/**
 	 * 添加用户
-	 * @param user
+	 * @param employee
 	 * @return
 	 */
-	public int addUser(EmployeeModel user);
+	public int addEmployee(EmployeeModel employee);
 	
 	/**
 	 * 修改用户信息
-	 * @param user
+	 * @param employee
 	 * @return
 	 */
-	public int updateUser(EmployeeModel user);
+	public int updateEmployee(EmployeeModel employee);
 	
 	/**
 	 * 删除用户
 	 * @param id
 	 * @return
 	 */
-	public int deleteUser(List<Integer> id);
+	public int deleteEmployee(List<Integer> seq);
 }

@@ -12,43 +12,43 @@ import com.houseleas.entity.EmployeeModel;
 import com.houseleas.service.EmployeeService;
 
 /**
- * userService实现类
- * @author dongwei
- * @date 2017年11月16日
+ * EmployeeService实现类
+ * @author Administrator
+ * @date 2018年1月27日
  */
-@Service("UserService")
+@Service("EmployeeService")
 @Transactional
 public class IEmployeeServiceImpl implements EmployeeService {
 	@Resource
-	private EmployeeDao userDao;
+	private EmployeeDao employeeDao;
 
 	@Override
 	public EmployeeModel login(EmployeeModel employeeModel) {
-		return userDao.login(employeeModel);
+		return employeeDao.login(employeeModel);
 	}
 
 	@Override
-	public List<EmployeeModel> getUserList(String userName, String roleType, int start, int size) {
-		return userDao.getUserList(userName, roleType, start, size);
+	public List<EmployeeModel> getEmployeeList(String userCode, int start, int size) {
+		return employeeDao.getEmployeeList(userCode, start, size);
 	}
 
 	@Override
-	public Long getTotal(String userName, String roleType, int start, int size) {
-		return userDao.getTotal(userName, roleType, start, size);
+	public Long getTotal(String userCode, int start, int size) {
+		return employeeDao.getTotal(userCode, start, size);
 	}
 
 	@Override
-	public int addUser(EmployeeModel user) {
-		return userDao.addUser(user);
+	public int addEmployee(EmployeeModel employee) {
+		return employeeDao.addEmployee(employee);
 	}
 
 	@Override
-	public int updateUser(EmployeeModel user) {
-		return userDao.updateUser(user);
+	public int updateEmployee(EmployeeModel employee) {
+		return employeeDao.updateEmployee(employee);
 	}
 
 	@Override
-	public int deleteUser(List<Integer> id) {
-		return userDao.deleteUser(id);
+	public int deleteEmployee(List<Integer> seqs) {
+		return employeeDao.deleteEmployee(seqs);
 	}
 }

@@ -8,13 +8,13 @@ import com.houseleas.entity.EmployeeModel;
 
 /**
  * 用户dao接口
- * @author dongwei
- * @date 2017年11月16日
+ * @author Administrator
+ * @date 2018年1月28日
  */
 public interface EmployeeDao {
 	/**
 	 * 用户登录
-	 * @param user
+	 * @param employee
 	 * @return
 	 */
 	public EmployeeModel login(@Param("employeeModel")EmployeeModel employeeModel);
@@ -24,33 +24,33 @@ public interface EmployeeDao {
 	 * @param map
 	 * @return
 	 */
-	public List<EmployeeModel> getUserList(@Param("userName")String userName, @Param("roleType")String roleType, @Param("start")int start, @Param("size")int size);
+	public List<EmployeeModel> getEmployeeList(@Param("userCode")String userCode, @Param("start")int start, @Param("size")int size);
 	
 	/**
 	 * 获取用户数据总数
 	 * @param map
 	 * @return
 	 */
-	public Long getTotal(@Param("userName")String userName, @Param("roleType")String roleType, @Param("start")int start, @Param("size")int size);
+	public Long getTotal(@Param("userCode")String userCode, @Param("start")int start, @Param("size")int size);
 	
 	/**
 	 * 添加用户
-	 * @param user
+	 * @param employee
 	 * @return
 	 */
-	public int addUser(@Param("user")EmployeeModel user);
+	public int addEmployee(@Param("employee")EmployeeModel employee);
 	
 	/**
 	 * 修改用户信息
-	 * @param user
+	 * @param employee
 	 * @return
 	 */
-	public int updateUser(@Param("user")EmployeeModel user);
+	public int updateEmployee(@Param("employee")EmployeeModel employee);
 	
 	/**
 	 * 删除用户
 	 * @param id
 	 * @return
 	 */
-	public int deleteUser(@Param("ids")List<Integer> ids);
+	public int deleteEmployee(@Param("seqs")List<Integer> seqs);
 }

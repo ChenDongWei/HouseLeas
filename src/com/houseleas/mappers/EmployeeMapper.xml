@@ -12,14 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</where> 
 	</select>
 	
-	<select id="getUserList" resultType="com.houseleas.entity.EmployeeModel">
-		select u.*, r.roleName from t_user u left join t_role r on u.roleType = r.roleType
+	<select id="getEmployeeList" resultType="com.houseleas.entity.EmployeeModel">
+		select emp.* from employee emp
 		<where>
 			<if test="userCode != null and userCode != ''">
-				and userCode like #{userCode}
-			</if>
-			<if test="roleType != null and roleType != ''">
-				and roleType = #{roleType}
+				and emp.user_code like #{userCode}
 			</if>
 		</where>
 		<if test="start != null and size != null">
@@ -28,53 +25,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getTotal" resultType="Long">
-		select count(*) from t_user
+		select count(*) from employee
 		<where>
 			<if test="userCode != null and userCode != ''">
-				and userCode like #{userCode}
-			</if>
-			<if test="roleType != null and roleType != ''">
-				and roleType = #{roleType}
+				and user_code like #{userCode}
 			</if>
 		</where>
 	</select>
 	
-	<insert id="addUser" parameterType="com.houseleas.entity.EmployeeModel">
-		insert into t_user values(null,#{user.userCode},#{user.password},#{user.trueName},
-		#{user.email},#{user.phone},#{user.roleType})
+	<insert id="addEmployee" parameterType="com.houseleas.entity.EmployeeModel">
+		insert into employee values(null,#{employee.userCode},#{employee.password},#{employee.name},
+		#{employee.sex},#{employee.email},#{employee.phoneNumber})
 	</insert>
 	
-	<update id="updateUser" parameterType="com.houseleas.entity.EmployeeModel">
-		update t_user
+	<update id="updateEmployee" parameterType="com.houseleas.entity.EmployeeModel">
+		update employee
 		<set>
-			<if test="user.userCode != null and user.userCode != ''">
-				userCode = #{user.userCode},
+			<if test="employee.userCode != null and employee.userCode != ''">
+				user_code = #{employee.userCode},
 			</if>
-			<if test="user.password != null and user.password != ''">
-				password = #{user.password},
+			<if test="employee.password != null and employee.password != ''">
+				password = #{employee.password},
 			</if>
-			<if test="user.trueName != null and user.trueName != ''">
-				trueName = #{user.trueName},
+			<if test="employee.trueName != null and employee.trueName != ''">
+				name = #{employee.name},
 			</if>
-			<if test="user.email != null and user.email != ''">
-				email = #{user.email},
+			<if test="employee.email != null and employee.email != ''">
+				sex = #{employee.sex},
 			</if>
-			<if test="user.phone != null and user.phone != ''">
-				phone = #{user.phone},
+			<if test="employee.phone != null and employee.phone != ''">
+				email = #{employee.email},
 			</if>
-			<if test="user.roleType != null and user.roleType != ''">
-				roleType = #{user.roleType}
+			<if test="employee.roleType != null and employee.roleType != ''">
+				phone_number = #{employee.phoneNumber}
 			</if>
 		</set>
 		<where>
-			id = #{user.id}
+			seq = #{employee.seq}
 		</where>
 	</update>
 	
-	<delete id="deleteUser" parameterType="Integer">
-		delete from t_user where id in 
-		<foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
-			#{id}
+	<delete id="deleteEmployee" parameterType="Integer">
+		delete from employee where seq in 
+		<foreach collection="seqs" index="index" item="seq" open="(" separator="," close=")">
+			#{seq}
 		</foreach>
 	</delete>
 </mapper> 

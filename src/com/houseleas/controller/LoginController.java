@@ -67,7 +67,7 @@ public class LoginController {
 			modelAndView.addObject("employeeModel", employeeModel);
 			modelAndView.addObject("errorMsg", "用户名或密码错误！");
 		} else {
-			modelAndView.setViewName("main");
+			modelAndView.setViewName("manage/main");
 			modelAndView.addObject("resultEmployee", resultEmployee);
 		}
 		return modelAndView;
