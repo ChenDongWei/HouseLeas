@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.3.3/themes/icon.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/font-awesome/css/font-awesome.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js"></script>
@@ -24,7 +25,7 @@
 			 frozenColumns:[[
 			     {sortable:false, resizable:true, align:'center', title:'', field:'ck',checkbox:true},
 			     {sortable:false, resizable:true, align:'center', width:"150", title:'编号', field:'seq'},
-			     {sortable:false, resizable:true, align:'center', width:"150", title:'用户名', field:'userCode'},
+			     {sortable:false, resizable:true, align:'center', width:"150", title:'帐号', field:'userCode'},
 			     {sortable:false, resizable:true, align:'center', width:"150", title:'姓名', field:'name'},
 			     {sortable:false, resizable:true, align:'center', width:"150", title:'性别', field:'sex'},
 			     {sortable:false, resizable:true, align:'center', width:"150", title:'电子邮箱', field:'email'},
@@ -48,15 +49,15 @@
 		var row = rows[0];
 		$("#dialog").dialog("open").dialog("setTitle","编辑用户信息");
 		$("#fm").form("load",row);
-		url = "${pageContext.request.contextPath}/employee/addOrUpdateEmployee.do?id="+row.id;
+		url = "${pageContext.request.contextPath}/employee/addOrUpdateEmployee.do?seq="+row.seq;
 	}
 	
 	function saveEmployee(){
 		$("#fm").form("submit",{
 			url:url,
 			onSubmit:function(){
-				if ($("#roleType").combobox("getValue")=="") {
-					$.messager.alert("系统提示", "请选择用户角色");
+				if ($("#sex").combobox("getValue")=="") {
+					$.messager.alert("系统提示", "请选择用户性别");
 					return false;
 				}
 				return $(this).form("validate");
@@ -79,10 +80,10 @@
 	function resetValue(){
 		$("#userCode").val("");
 		$("#password").val("");
-		$("#trueName").val("");
+		$("#name").val("");
 		$("#email").val("");
-		$("#phone").val("");
-		$("#roleType").combobox("setValue", "");
+		$("#phoneNumber").val("");
+		$("#sex").combobox("setValue", "");
 	}
 	
 	function closeEmployeeDialog(){
@@ -96,14 +97,14 @@
 			$.messager.alert("系统提示","请至少选择一条记录");
 			return;
 		}
-		var strIds = [];
+		var strSeqs = [];
 		$.each(rows, function(index,val) {
-			strIds.push(val.id);
+			strSeqs.push(val.seq);
 		}); 
-		var ids = strIds.join(",");
+		var seqs = strSeqs.join(",");
 		$.messager.confirm("系统提示","确定删除这<font color=red>"+rows.length+"</font>条记录吗？",function(r){
 			if (r) {
-				$.post("${pageContext.request.contextPath}/employee/deleteEmployee.do",{ids:ids},function(result){
+				$.post("${pageContext.request.contextPath}/employee/deleteEmployee.do",{seqs:seqs},function(result){
 					if (result.success) {
 						$.messager.alert("系统提示","删除成功");
 						$("#datagrid").datagrid("reload");
@@ -134,7 +135,8 @@
 	 	</div>
 	 	<div>
 	 		&nbsp;用户名：&nbsp;<input type="text" id="s_userCode" size="20" onkeydown="if(event.keyCode==13) searchEmployee()"/>
-	 		<a href="javascript:searchEmployee()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+	 		<a href="javascript:searchEmployee()" class="easyui-linkbutton fa fa-search" plain="true">搜索</a>
+	 		<a href="javascript:searchEmployee()" class="easyui-linkbutton fa fa-ban" plain="true">搜索</a>
 	 	</div>
 	 </div>
 	 <div id="dialog" class="easyui-dialog" style="width:320px; height:250px; padding:10px 20px"
@@ -142,7 +144,7 @@
 	  	<form id="fm" method="post">
 	  		<table>
 	  			<tr>
-	  				<td>用户名：</td>
+	  				<td>帐号：</td>
 	  				<td><input type="text" id="userCode" name="userCode" style="width:154px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
 	  			</tr>
 	  			<tr>
@@ -150,8 +152,19 @@
 	  				<td><input type="text" id="password" name="password" style="width:154px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
 	  			</tr>
 	  			<tr>
-	  				<td>真实姓名：</td>
-	  				<td><input type="text" id="trueName" name="trueName" style="width:154px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
+	  				<td>姓名：</td>
+	  				<td><input type="text" id="name" name="name" style="width:154px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
+	  			</tr>
+	  			<tr>
+	  				<td>性别：</td>
+	  				<td>
+	  					<select class="easyui-combobox" id="sex" name="sex" style="width:158px" editable="false" panelHeight="auto">
+	  						<option value="">--请选择--</option>
+	  						<option value="1">男</option>
+	  						<option value="2">女</option>
+	  					</select>
+	  					&nbsp;<font color="red">*</font>
+	  				</td>
 	  			</tr>
 	  			<tr>
 	  				<td>邮箱：</td>
@@ -159,20 +172,7 @@
 	  			</tr>
 	  			<tr>
 	  				<td>联系电话：</td>
-	  				<td><input type="text" id="phone" name="phone" style="width:154px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
-	  			</tr>
-	  			<tr>
-	  				<td>角色类型：</td>
-	  				<td>
-	  					<select class="easyui-combobox" id="roleType" name="roleType" style="width:158px" editable="false" panelHeight="auto">
-	  						<option value="">--请选择--</option>
-	  						<option value="1">系统管理员</option>
-	  						<option value="2">销售主管</option>
-	  						<option value="3">客户经理</option>
-	  						<option value="4">高管</option>
-	  					</select>
-	  					&nbsp;<font color="red">*</font>
-	  				</td>
+	  				<td><input type="text" id="phoneNumber" name="phoneNumber" style="width:154px" class="easyui-validatebox" required="true"/>&nbsp;<font color="red">*</font></td>
 	  			</tr>
 	  		</table>
 	  	</form>

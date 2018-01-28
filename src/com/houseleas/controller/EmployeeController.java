@@ -102,10 +102,10 @@ public class EmployeeController {
 	public String deleteEmployee(@RequestParam(value = "seqs") String seqs,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		String[] idsStr = seqs.split(",");
+		String[] seqsStr = seqs.split(",");
 		List<Integer> list = new ArrayList<Integer>();
-		for (String id : idsStr) {
-			list.add(Integer.parseInt(id));
+		for (String seq : seqsStr) {
+			list.add(Integer.parseInt(seq));
 		}
 		employeeService.deleteEmployee(list);
 		JSONObject result = new JSONObject();

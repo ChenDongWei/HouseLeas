@@ -47,16 +47,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="employee.password != null and employee.password != ''">
 				password = #{employee.password},
 			</if>
-			<if test="employee.trueName != null and employee.trueName != ''">
+			<if test="employee.name != null and employee.name != ''">
 				name = #{employee.name},
 			</if>
 			<if test="employee.email != null and employee.email != ''">
 				sex = #{employee.sex},
 			</if>
-			<if test="employee.phone != null and employee.phone != ''">
+			<if test="employee.email != null and employee.email != ''">
 				email = #{employee.email},
 			</if>
-			<if test="employee.roleType != null and employee.roleType != ''">
+			<if test="employee.phoneNumber != null and employee.phoneNumber != ''">
 				phone_number = #{employee.phoneNumber}
 			</if>
 		</set>
