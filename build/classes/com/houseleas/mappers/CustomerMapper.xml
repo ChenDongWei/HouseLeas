@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.houseleas.dao.CustomerDao">
+	
+	<select id="login" parameterType="com.houseleas.entity.CustomerModel" resultType="com.houseleas.entity.CustomerModel">
+		select c.* from customer c 
+		<where>
+			c.mobile_phone = #{customerModel.mobilePhone}
+			and c.password = #{customerModel.password}
+		</where> 
+	</select>
+	
+	<select id="getCustomerList" resultType="com.houseleas.entity.CustomerModel">
+		select c.* from customer c
+		<where>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				and c.mobile_phone like #{mobilePhone}
+			</if>
+		</where>
+		<if test="start != null and size != null">
+				limit #{start}, #{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" resultType="Long">
+		select count(*) from customer
+		<where>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				and mobile_phone like #{mobilePhone}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="addCustomer" parameterType="com.houseleas.entity.CustomerModel">
+		insert into customer values(null,#{customer.mobilePhone},#{customer.password},#{customer.trueName},
+		#{customer.idCard},#{customer.telNumber},#{customer.email},#{customer.type})
+	</insert>
+	
+	<update id="updateCustomer" parameterType="com.houseleas.entity.CustomerModel">
+		update customer
+		<set>
+			<if test="customer.mobilePhone != null and customer.mobilePhone != ''">
+				mobile_phone = #{customer.mobilePhone},
+			</if>
+			<if test="customer.password != null and customer.password != ''">
+				password = #{customer.password},
+			</if>
+			<if test="customer.trueName != null and customer.trueName != ''">
+				trueName = #{customer.trueName},
+			</if>
+			<if test="customer.email != null and customer.email != ''">
+				sex = #{customer.idCard},
+			</if>
+			<if test="customer.email != null and customer.email != ''">
+				email = #{customer.telNumber},
+			</if>
+			<if test="customer.phoneNumber != null and customer.phoneNumber != ''">
+				phone_number = #{customer.email}
+			</if>
+			<if test="customer.type != null and customer.type != ''">
+				type = #{customer.type}
+			</if>
+		</set>
+		<where>
+			seq = #{customer.seq}
+		</where>
+	</update>
+	
+	<delete id="deleteCustomer" parameterType="Integer">
+		delete from customer where seq in 
+		<foreach collection="seqs" index="index" item="seq" open="(" separator="," close=")">
+			#{seq}
+		</foreach>
+	</delete>
+</mapper> 

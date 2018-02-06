@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="author" content="order by dede58.com/" /><title>邻居大妈</title>
+<title>邻居大妈</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico" />
 <link type="text/css" href="${pageContext.request.contextPath}/css/outnet.css" rel="stylesheet" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.js"></script>
@@ -22,7 +22,7 @@
   <div class="width1190">
    <div class="fl">您好，欢迎来到邻居大妈！</div>
    <div class="fr">
-    <a href="login.html">登录</a> | 
+    <a href="login.jsp">登录</a> | 
     <a href="reg.html">注册</a> | 
     <a href="javascript:;" onclick="AddFavorite(window.location,document.title)">加入收藏</a> | 
     <a href="javascript:;" onclick="SetHome(this,window.location)">设为首页</a>
@@ -100,17 +100,17 @@
    <div class="reg-logo">
    <form id="signupForm" method="post" action="user.html" class="zcform">
         <p class="clearfix">
-        	<label class="one" for="agent">用户名：</label>
-        	<input id="agent" name="agent" type="text" class="required" value placeholder="请输入您的用户名" />
+        	<label class="one" for="agent">帐号：</label>
+        	<input id="agent" name="agent" type="text" class="required" value placeholder="请输入您的帐号(手机号)" />
         </p>
         <p class="clearfix">
          	<label class="one"  for="password">登录密码：</label>
         	<input id="password" name="password" type="password" class="{required:true,rangelength:[8,20],}" value placeholder="请输入密码" />
         </p>
-        <!--<p class="clearfix agreement">
+        <p class="clearfix agreement">
         	<input type="checkbox" />
             <b class="left">已阅读并同意<a href="#">《用户协议》</a></b>
-        </p>-->
+        </p>
        	<p class="clearfix"><input class="submit" type="submit" value="立即登录"/></p>
     </form>
     <div class="reg-logo-right">

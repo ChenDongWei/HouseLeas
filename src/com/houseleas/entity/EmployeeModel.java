@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class EmployeeModel implements Serializable {
 	private static final long serialVersionUID = -9161032380559737033L;
 
-	private Integer seq;// 编号
+	private Long seq;// 编号
 	private String userCode;// 帐号
 	private String password;// 密码
 	private String name;// 姓名
@@ -19,11 +19,11 @@ public class EmployeeModel implements Serializable {
 	private String email;// 邮箱
 	private String phoneNumber;// 电话
 
-	public Integer getSeq() {
+	public Long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(Integer seq) {
+	public void setSeq(Long seq) {
 		this.seq = seq;
 	}
 
