@@ -98,10 +98,10 @@
  <div class="content">
   <div class="width1190">
    <div class="reg-logo">
-   <form id="signupForm" method="post" action="user.html" class="zcform">
+   <form id="signupForm" method="post" action="${pageContext.request.contextPath}/login/loginCustomer.do" class="zcform">
         <p class="clearfix">
         	<label class="one" for="agent">帐号：</label>
-        	<input id="agent" name="agent" type="text" class="required" value placeholder="请输入您的帐号(手机号)" />
+        	<input id="agent" name="mobilePhone" type="text" class="mobilePhone" value placeholder="请输入您的帐号(手机号)" />
         </p>
         <p class="clearfix">
          	<label class="one"  for="password">登录密码：</label>

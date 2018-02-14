@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.houseleas.entity.CustomerModel;
 import com.houseleas.entity.PageModel;
 import com.houseleas.entity.EmployeeModel;
+import com.houseleas.service.CustomerService;
 import com.houseleas.service.EmployeeService;
 import com.houseleas.util.ResponseUtil;
 import com.houseleas.util.StringUtil;
@@ -36,6 +38,9 @@ import com.houseleas.util.StringUtil;
 public class LoginController {
 	@Resource
 	private EmployeeService employeeService;
+	
+	@Resource
+	private CustomerService customerService;
 
 	/**
 	 * 跳转到平台员工登录页面
@@ -44,7 +49,7 @@ public class LoginController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/toManageLogin")
-	public ModelAndView toLogin() throws Exception {
+	public ModelAndView toManageLogin() throws Exception {
 		ModelAndView modelAndView = new ModelAndView("manage/login/login");
 		return modelAndView;
 	}
@@ -58,7 +63,7 @@ public class LoginController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/loginManage")
-	public ModelAndView login(EmployeeModel employeeModel,
+	public ModelAndView loginManage(EmployeeModel employeeModel,
 			HttpServletRequest request) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		EmployeeModel resultEmployee = employeeService.login(employeeModel);
@@ -73,6 +78,21 @@ public class LoginController {
 		return modelAndView;
 	}
 
+	@RequestMapping("/loginCustomer")
+	public ModelAndView loginCustomer(CustomerModel customerModel, HttpServletRequest request) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		CustomerModel resultCustomer = customerService.login(customerModel);
+		if (resultCustomer == null) {
+			modelAndView.setViewName("outnet/login");
+			modelAndView.addObject("customerModel", customerModel);
+			modelAndView.addObject("errorMsg", "用户名或密码错误！");
+		}else {
+			modelAndView.setViewName("outnet/index");
+			modelAndView.addObject("customerModel", customerModel);
+		}
+		return modelAndView;
+	}
+	
 	/**
 	 * bindControlModel:(办件信息传参model). <br/>
 	 * <b>Be careful：</b>InitBinder的value使用实体对象的驼峰命名法（也就是首字母小写）
@@ -86,4 +106,8 @@ public class LoginController {
 		webDataBinder.setFieldDefaultPrefix("employeeModel."); // 参数前缀可以自定义，和页面传参方式一直即可
 	}
 
+	@InitBinder("customerModel")
+	public void bindCustomerModel(WebDataBinder webDataBinder) {
+		webDataBinder.setFieldDefaultPrefix("customerModel."); // 参数前缀可以自定义，和页面传参方式一直即可
+	}
 }

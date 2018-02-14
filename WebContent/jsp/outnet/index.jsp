@@ -21,6 +21,7 @@
 		$(".nav li:eq(0)").addClass("navCur");
 	})
 </script>
+<rapid:block name="otherJs"></rapid:block>
 </head>
 
 <body>
