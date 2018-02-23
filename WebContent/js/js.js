@@ -39,7 +39,7 @@ $(function(){
 		})	
 	})
 	
-//加入收藏 设为首页	
+//加入收藏
 function AddFavorite(sURL, sTitle)
 {
     try
@@ -58,7 +58,7 @@ function AddFavorite(sURL, sTitle)
         }
     }
 }
-//设为首页 <a onclick="SetHome(this,window.location)">设为首页</a>
+//员工通道
 function toManageLogin(){
 	var url = pageContext+"/login/toManageLogin.do";
 	window.open(url);

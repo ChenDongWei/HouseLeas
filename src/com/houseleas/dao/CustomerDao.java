@@ -53,4 +53,11 @@ public interface CustomerDao {
 	 * @return
 	 */
 	public int deleteCustomer(@Param("seqs")List<Integer> seqs);
+
+	/**
+	 * 根据条件查询客户信息
+	 * @param customer
+	 * @return
+	 */
+	public CustomerModel getCustomer(@Param("customer")CustomerModel customer);
 }

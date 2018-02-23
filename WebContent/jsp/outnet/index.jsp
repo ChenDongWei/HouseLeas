@@ -107,7 +107,7 @@
 				<li><a href="pro_zu.jsp">租房</a></li>
 				<li><a href="pro_xin.jsp">新房</a></li>
 				<li><a href="pro_er.jsp">二手房</a></li>
-				<li class="zhiding"><a href="javascript:;">指定购房</a></li>
+				<li class="zhiding"><a href="javascript:;">指定租房</a></li>
 				<li><a href="user_jingji.jsp">申请自由经纪人</a></li>
 				<li><a href="about.jsp">关于我们</a></li>
 				<div class="clears"></div>
@@ -415,7 +415,7 @@
 	<div class="bg100"></div>
 	<div class="zhidinggoufang">
 		<h2>
-			指定购房 <span class="close">X</span>
+			指定租房 <span class="close">X</span>
 		</h2>
 		<form action="#" method="get">
 			<div class="zhiding-list">
@@ -426,13 +426,6 @@
 					<option>勤劳村</option>
 					<option>芦胜村</option>
 					<option>知新村</option>
-				</select>
-			</div>
-			<div class="zhiding-list">
-				<label>方式：</label> <select>
-					<option>租房</option>
-					<option>新房</option>
-					<option>二手房</option>
 				</select>
 			</div>
 			<div class="zhiding-list">

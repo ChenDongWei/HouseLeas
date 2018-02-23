@@ -51,4 +51,9 @@ public class ICustomerServiceImpl implements CustomerService {
 	public int deleteCustomer(List<Integer> seqs) {
 		return customerDao.deleteCustomer(seqs);
 	}
+
+	@Override
+	public CustomerModel getCustomer(CustomerModel customer) {
+		return customerDao.getCustomer(customer);
+	}
 }

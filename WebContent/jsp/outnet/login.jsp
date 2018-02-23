@@ -23,7 +23,7 @@
    <div class="fl">您好，欢迎来到邻居大妈！</div>
    <div class="fr">
     <a href="login.jsp">登录</a> | 
-    <a href="reg.html">注册</a> | 
+    <a href="reg.jsp">注册</a> | 
     <a href="javascript:;" onclick="AddFavorite(window.location,document.title)">加入收藏</a> | 
     <a href="javascript:;" onclick="SetHome(this,window.location)">设为首页</a>
    </div>
@@ -101,7 +101,7 @@
    <form id="signupForm" method="post" action="${pageContext.request.contextPath}/login/loginCustomer.do" class="zcform">
         <p class="clearfix">
         	<label class="one" for="agent">帐号：</label>
-        	<input id="agent" name="mobilePhone" type="text" class="mobilePhone" value placeholder="请输入您的帐号(手机号)" />
+        	<input id="mobilePhone" name="mobilePhone" type="text" class="mobilePhone" value placeholder="请输入您的帐号(手机号)" />
         </p>
         <p class="clearfix">
          	<label class="one"  for="password">登录密码：</label>
@@ -115,7 +115,7 @@
     </form>
     <div class="reg-logo-right">
      <h3>如果您没有账号，请</h3>
-     <a href="reg.html" class="logo-a">立即注册</a>
+     <a href="${pageContext.request.contextPath}/jsp/outnet/reg.jsp" class="logo-a">立即注册</a>
     </div><!--reg-logo-right/-->
     <div class="clears"></div>
   </div><!--reg-logo/-->

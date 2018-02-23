@@ -51,4 +51,11 @@ public interface CustomerService {
 	 * @return
 	 */
 	public int deleteCustomer(List<Integer> seq);
+
+	/**
+	 * 根据条件查询客户信息
+	 * @param customer
+	 * @return
+	 */
+	public CustomerModel getCustomer(CustomerModel customer);
 }

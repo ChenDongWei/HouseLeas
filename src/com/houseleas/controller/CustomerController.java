@@ -12,9 +12,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.houseleas.entity.CustomerModel;
 import com.houseleas.entity.PageModel;
@@ -25,6 +28,7 @@ import com.houseleas.util.StringUtil;
 
 /**
  * 客户Control层
+ * 
  * @author Administrator
  * @date 2018年1月27日
  */
@@ -56,7 +60,8 @@ public class CustomerController {
 		String mobilePhone = StringUtil.formatLike(customer.getMobilePhone());
 		int start = pageModel.getStart();
 		int size = pageModel.getPageSize();
-		List<CustomerModel> customerList = customerService.getCustomerList(mobilePhone, start, size);
+		List<CustomerModel> customerList = customerService.getCustomerList(
+				mobilePhone, start, size);
 		Long total = customerService.getTotal(mobilePhone, start, size);
 		JSONObject result = new JSONObject();
 		JSONArray jsonArray = JSONArray.fromObject(customerList);
@@ -73,8 +78,9 @@ public class CustomerController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/addOrUpdateCustomer")
-	public String addOrUpdateCustomer(CustomerModel customer, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public String addOrUpdateCustomer(CustomerModel customer,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
 		int resultTotal = 0;// 操作返回的记录条数
 		if (customer.getSeq() != null) {
 			resultTotal = customerService.updateCustomer(customer);
@@ -92,7 +98,42 @@ public class CustomerController {
 	}
 
 	/**
+	 * 客户注册
+	 * 
+	 * @param customer
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/registerCustomer")
+	public ModelAndView registerCustomer(CustomerModel customer,
+			HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		if (customer != null) {
+			CustomerModel customerModel = customerService.getCustomer(customer);
+			if (customerModel == null) {
+				int resultTotal = 0;// 操作返回的记录条数
+				resultTotal = customerService.addCustomer(customer);
+				JSONObject result = new JSONObject();
+				if (resultTotal > 0) {
+					result.put("success", true);
+					modelAndView.setViewName("outnet/login");
+				} else {
+					result.put("success", false);
+					modelAndView.setViewName("outnet/reg");
+				}
+				modelAndView.addObject(request);
+			}
+		}
+		
+		return modelAndView;
+	}
+
+	/**
 	 * 删除用户
+	 * 
 	 * @param ids
 	 * @param request
 	 * @param response
@@ -113,5 +154,10 @@ public class CustomerController {
 		result.put("success", true);
 		ResponseUtil.write(response, result);
 		return null;
+	}
+	
+	@InitBinder("customerModel")
+	public void bindCustomerModel(WebDataBinder webDataBinder) {
+		webDataBinder.setFieldDefaultPrefix("customerModel."); // 参数前缀可以自定义，和页面传参方式一直即可
 	}
 }

@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from customer
 		<where>
 			<if test="mobilePhone != null and mobilePhone != ''">
-				and mobile_phone like #{mobilePhone}
+				mobile_phone like #{mobilePhone}
 			</if>
 		</where>
 	</select>
@@ -54,10 +54,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				sex = #{customer.idCard},
 			</if>
 			<if test="customer.email != null and customer.email != ''">
-				email = #{customer.telNumber},
+				email = #{customer.email},
 			</if>
-			<if test="customer.phoneNumber != null and customer.phoneNumber != ''">
-				phone_number = #{customer.email}
+			<if test="customer.telNumber != null and customer.telNumber != ''">
+				tel_number = #{customer.tel_number}
 			</if>
 			<if test="customer.type != null and customer.type != ''">
 				type = #{customer.type}
@@ -67,6 +67,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			seq = #{customer.seq}
 		</where>
 	</update>
+	
+	<select id="getCustomer" resultType="com.houseleas.entity.CustomerModel">
+		select c.* from customer c
+		<where>
+			c.mobile_phone = #{customer.mobilePhone}
+		</where>
+	</select>
 	
 	<delete id="deleteCustomer" parameterType="Integer">
 		delete from customer where seq in 
