@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -78,6 +79,13 @@ public class LoginController {
 		return modelAndView;
 	}
 
+	/**
+	 * 客户登录方法
+	 * @param customerModel
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/loginCustomer")
 	public ModelAndView loginCustomer(CustomerModel customerModel, HttpServletRequest request) throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
@@ -88,7 +96,9 @@ public class LoginController {
 			modelAndView.addObject("errorMsg", "用户名或密码错误！");
 		}else {
 			modelAndView.setViewName("outnet/index");
-			modelAndView.addObject("customerModel", customerModel);
+			//modelAndView.addObject("customerModel", resultCustomer);
+			HttpSession session = request.getSession(true);
+			session.setAttribute("customerModel", resultCustomer); 
 		}
 		return modelAndView;
 	}

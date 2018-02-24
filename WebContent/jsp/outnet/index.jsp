@@ -19,7 +19,18 @@
 	$(function() {
 		//导航定位
 		$(".nav li:eq(0)").addClass("navCur");
-	})
+		
+		var customerName = "游客";
+		var trueName = "${customerModel.trueName}";
+		var mobilePhone = "${customerModel.mobilePhone}";
+		if(trueName != ""){
+			customerName = trueName;
+		}else if (mobilePhone != "") {
+			customerName = mobilePhone;
+		}
+		$("#customerName").html(customerName);
+	});
+	
 </script>
 <rapid:block name="otherJs"></rapid:block>
 </head>
@@ -29,7 +40,7 @@
 		value="${pageContext.request.contextPath}" />
 	<div class="header">
 		<div class="width1190">
-			<div class="fl">您好，欢迎来到邻居大妈！</div>
+			<div class="fl"><span id="customerName" class="customerName"></span>您好，欢迎来到邻居大妈！</div>
 			<div class="fr">
 				<a href="${pageContext.request.contextPath}/jsp/outnet/login.jsp">登录</a>
 				| <a href="${pageContext.request.contextPath}/jsp/outnet/reg.jsp">注册</a>
@@ -103,13 +114,13 @@
 			</div>
 			<!--list/-->
 			<ul class="nav">
-				<li><a href="index.jsp">首页</a></li>
-				<li><a href="pro_zu.jsp">租房</a></li>
-				<li><a href="pro_xin.jsp">新房</a></li>
-				<li><a href="pro_er.jsp">二手房</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp">首页</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_zu.jsp">租房</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_xin.jsp">新房</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_er.jsp">二手房</a></li>
 				<li class="zhiding"><a href="javascript:;">指定租房</a></li>
-				<li><a href="user_jingji.jsp">申请自由经纪人</a></li>
-				<li><a href="about.jsp">关于我们</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/user_jingji.jsp">申请自由经纪人</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a></li>
 				<div class="clears"></div>
 			</ul>
 			<!--nav/-->
@@ -379,8 +390,8 @@
 	<div class="footer">
 		<div class="width1190">
 			<div class="fl">
-				<a href="index.jsp"><strong>邻居大妈</strong></a><a href="about.jsp">关于我们</a><a
-					href="contact.jsp">联系我们</a><a href="user.jsp">个人中心</a>
+				<a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp"><strong>邻居大妈</strong></a><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a><a
+					href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a><a href="${pageContext.request.contextPath}/jsp/outnet/user.jsp">个人中心</a>
 			</div>
 			<div class="fr">
 				<dl>
