@@ -19,6 +19,9 @@ public class CustomerModel implements Serializable {
 	private String telNumber;// 固定电话
 	private String email;// 邮箱
 	private Long type;//客户类型  1-普通租户   2-房东
+	private Long age;//年龄
+	private Long sex;//性别
+	private String qq;//QQ帐号
 	
 	public Long getSeq() {
 		return seq;
@@ -67,6 +70,24 @@ public class CustomerModel implements Serializable {
 	}
 	public void setType(Long type) {
 		this.type = type;
+	}
+	public Long getAge() {
+		return age;
+	}
+	public void setAge(Long age) {
+		this.age = age;
+	}
+	public Long getSex() {
+		return sex;
+	}
+	public void setSex(Long sex) {
+		this.sex = sex;
+	}
+	public String getQq() {
+		return qq;
+	}
+	public void setQq(String qq) {
+		this.qq = qq;
 	}
 
 }

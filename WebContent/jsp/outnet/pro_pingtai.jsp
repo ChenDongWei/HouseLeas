@@ -56,12 +56,12 @@
 			<div class="pro-left">
 				<dl>
 					<dt>
-						<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang1.jpg" width="286"
+						<a href="proinfo.jsp"><img src="${pageContext.request.contextPath}/images/fang1.jpg" width="286"
 							height="188" /></a>
 					</dt>
 					<dd>
 						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
+							<a href="proinfo.jsp">中装一室一厅，楼层好，采光足，稀缺房源</a>
 						</h3>
 						<div class="pro-wei">
 							<img src="${pageContext.request.contextPath}/images/weizhi.png" width="12" height="16" /> <strong

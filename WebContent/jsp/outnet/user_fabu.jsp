@@ -14,8 +14,8 @@
 						</dd>
 						<dt class="vipIcon1">我的邻居大妈</dt>
 						<dd>
-							<a href="user_guanzhu.html">关注房源</a> <a href="user_shenqing.html"
-								class="vipNavCur">申请社区自由经纪人</a> <a href="user_jingji.html">社区自由经纪人</a>
+							<a href="user_guanzhu.jsp">关注房源</a>
+							<a href="user_fabu.jsp">发布房源</a>
 						</dd>
 					</dl>
 				</div>
@@ -23,7 +23,7 @@
 			</div>
 			<!--vip-left/-->
 			<div class="vip-right">
-				<h3 class="vipright-title">申请社区自由经纪人</h3>
+				<h3 class="vipright-title">发布房源</h3>
 				<form action="#" method="get">
 					<dl class="vip-touxiang">
 						<dt>

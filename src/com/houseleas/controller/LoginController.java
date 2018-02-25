@@ -98,7 +98,7 @@ public class LoginController {
 			modelAndView.setViewName("outnet/index");
 			//modelAndView.addObject("customerModel", resultCustomer);
 			HttpSession session = request.getSession(true);
-			session.setAttribute("customerModel", resultCustomer); 
+			session.setAttribute("resultCustomer", resultCustomer); 
 		}
 		return modelAndView;
 	}

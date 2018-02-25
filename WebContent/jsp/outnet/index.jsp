@@ -18,11 +18,11 @@
 <script type="text/javascript">
 	$(function() {
 		//导航定位
-		$(".nav li:eq(0)").addClass("navCur");
+		//$(".nav li:eq(0)").addClass("navCur");
 		
 		var customerName = "游客";
-		var trueName = "${customerModel.trueName}";
-		var mobilePhone = "${customerModel.mobilePhone}";
+		var trueName = "${resultCustomer.trueName}";
+		var mobilePhone = "${resultCustomer.mobilePhone}";
 		if(trueName != ""){
 			customerName = trueName;
 		}else if (mobilePhone != "") {
@@ -115,11 +115,10 @@
 			<!--list/-->
 			<ul class="nav">
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp">首页</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_zu.jsp">租房</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_xin.jsp">新房</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_er.jsp">二手房</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">平台房源</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">个人房源</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/user_fabu.jsp">发布房源</a></li>
 				<li class="zhiding"><a href="javascript:;">指定租房</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/user_jingji.jsp">申请自由经纪人</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a></li>
 				<div class="clears"></div>
 			</ul>
@@ -135,7 +134,7 @@
 		<div class="content">
 			<div class="width1190">
 				<h2 class="title">
-					租房 <a href="pro_zu.jsp">更多&gt;&gt;</a>
+					平台房源 <a href="pro_zu.jsp">更多&gt;&gt;</a>
 				</h2>
 				<div class="index-fang-list">
 					<dl>
@@ -195,7 +194,7 @@
 				<!--index-fang-list/-->
 	
 				<h2 class="title">
-					新房 <a href="pro_xin.jsp">更多&gt;&gt;</a>
+					个人房源 <a href="pro_xin.jsp">更多&gt;&gt;</a>
 				</h2>
 				<div class="index-fang-list">
 					<dl>
@@ -253,100 +252,6 @@
 					<div class="clears"></div>
 				</div>
 				<!--index-fang-list/-->
-	
-				<h2 class="title">
-					二手房 <a href="pro_er.jsp">更多&gt;&gt;</a>
-				</h2>
-				<div class="index-ershou">
-					<div class="in-er-left">
-						<a href="proinfo.jsp"><img
-							src="${pageContext.request.contextPath}/images/fangt1.jpg"
-							width="380" height="285" /></a>
-						<div class="in-er-left-text">
-							<strong class="fl">闵行南方发的撒的发的司法</strong><strong
-								class="fr alignRight">¥2841</strong>
-						</div>
-					</div>
-					<!--in-er-left/-->
-					<div class="in-er-right">
-						<dl>
-							<dt>
-								<a href="proinfo.jsp"><img
-									src="${pageContext.request.contextPath}/images/fang1.jpg"
-									width="150" height="115" /></a>
-							</dt>
-							<dd>
-								<h3>
-									<a href="proinfo.jsp">浦东新区张江日水安华苑</a>
-								</h3>
-								<div class="in-er-right-text">
-									习近平强调，中方重视发展中南中方重视发展中南“同志加兄弟”的特殊关系。双方要坚持做</div>
-								<div class="price">
-									¥<strong>2890</strong>
-								</div>
-							</dd>
-							<div class="clears"></div>
-						</dl>
-						<dl>
-							<dt>
-								<a href="proinfo.jsp"><img
-									src="${pageContext.request.contextPath}/images/fang3.jpg"
-									width="150" height="115" /></a>
-							</dt>
-							<dd>
-								<h3>
-									<a href="proinfo.jsp">浦东新区张江日水安华苑</a>
-								</h3>
-								<div class="in-er-right-text">
-									习近平强调，中方重视发展中南中方重视发展中南“同志加兄弟”的特殊关系。双方要坚持做</div>
-								<div class="price">
-									¥<strong>2890</strong>
-								</div>
-							</dd>
-							<div class="clears"></div>
-						</dl>
-						<dl>
-							<dt>
-								<a href="proinfo.jsp"><img
-									src="${pageContext.request.contextPath}/images/fang8.jpg"
-									width="150" height="115" /></a>
-							</dt>
-							<dd>
-								<h3>
-									<a href="proinfo.jsp">浦东新区张江日水安华苑</a>
-								</h3>
-								<div class="in-er-right-text">
-									习近平强调，中方重视发展中南中方重视发展中南“同志加兄弟”的特殊关系。双方要坚持做</div>
-								<div class="price">
-									¥<strong>2890</strong>
-								</div>
-							</dd>
-							<div class="clears"></div>
-						</dl>
-						<dl>
-							<dt>
-								<a href="proinfo.jsp"><img
-									src="${pageContext.request.contextPath}/images/fang5.jpg"
-									width="150" height="115" /></a>
-							</dt>
-							<dd>
-								<h3>
-									<a href="proinfo.jsp">浦东新区张江日水安华苑</a>
-								</h3>
-								<div class="in-er-right-text">
-									习近平强调，中方重视发展中南中方重视发展中南“同志加兄弟”的特殊关系。双方要坚持做</div>
-								<div class="price">
-									¥<strong>2890</strong>
-								</div>
-							</dd>
-							<div class="clears"></div>
-						</dl>
-						<div class="clears"></div>
-					</div>
-					<!--in-er-right/-->
-					<div class="clears"></div>
-				</div>
-				<!--index-ershou/-->
 			</div>
 			<!--width1190/-->
 		</div>
@@ -440,7 +345,13 @@
 				</select>
 			</div>
 			<div class="zhiding-list">
-				<label>联系方式：</label> <input type="text" />
+				<label>价格(元/月)：</label> <input type="text" />
+			</div>
+			<div class="zhiding-list">
+				<label>联系电话：</label> <input type="text" />
+			</div>
+			<div class="zhiding-list-textarea">
+				<label>备注：</label> <textarea id="sign" class="grtextarea"></textarea>
 			</div>
 			<div class="zhidingsub">
 				<input type="submit" value="提交" />
@@ -448,8 +359,8 @@
 		</form>
 		<div class="zhidingtext">
 			<h3>指定购房注意事宜：</h3>
-			<p>1、请详细输入您所需要购买的房源信息(精确到小区)</p>
-			<p>2、制定购房申请提交后，客服中心会在24小时之内与您取得联系</p>
+			<p>1、请详细输入您所需要租赁的房源信息(精确到小区)</p>
+			<p>2、制定租赁申请提交后，客服中心会在24小时之内与您取得联系</p>
 			<p>3、如有任何疑问，请随时拨打我们的电话：400-000-0000</p>
 		</div>
 		<!--zhidingtext/-->
