@@ -35,32 +35,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="addCustomer" parameterType="com.houseleas.entity.CustomerModel">
 		insert into customer values(null,#{customer.mobilePhone},#{customer.password},#{customer.trueName},
-		#{customer.idCard},#{customer.telNumber},#{customer.email},#{customer.type})
+		#{customer.idCard},#{customer.telNumber},#{customer.email},#{customer.type},#{customer.age},
+		#{customer.sex},#{customer.qq})
 	</insert>
 	
 	<update id="updateCustomer" parameterType="com.houseleas.entity.CustomerModel">
 		update customer
 		<set>
-			<if test="customer.mobilePhone != null and customer.mobilePhone != ''">
+			<if test="customer.mobilePhone != null">
 				mobile_phone = #{customer.mobilePhone},
 			</if>
-			<if test="customer.password != null and customer.password != ''">
-				password = #{customer.password},
+			<if test="customer.trueName != null">
+				true_name = #{customer.trueName},
 			</if>
-			<if test="customer.trueName != null and customer.trueName != ''">
-				trueName = #{customer.trueName},
+			<if test="customer.idCard != null">
+				id_card = #{customer.idCard},
 			</if>
-			<if test="customer.email != null and customer.email != ''">
-				sex = #{customer.idCard},
-			</if>
-			<if test="customer.email != null and customer.email != ''">
+			<if test="customer.email != null">
 				email = #{customer.email},
 			</if>
-			<if test="customer.telNumber != null and customer.telNumber != ''">
-				tel_number = #{customer.tel_number}
+			<if test="customer.telNumber != null">
+				tel_number = #{customer.telNumber},
 			</if>
-			<if test="customer.type != null and customer.type != ''">
-				type = #{customer.type}
+			<if test="customer.type != null">
+			type = #{customer.type},
+			</if>
+			<if test="customer.age != null">
+			age = #{customer.age},
+			</if>
+			<if test="customer.sex != null">
+			sex = #{customer.sex},
+			</if>
+			<if test="customer.qq != null">
+			qq = #{customer.qq}
 			</if>
 		</set>
 		<where>
@@ -71,7 +78,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCustomer" resultType="com.houseleas.entity.CustomerModel">
 		select c.* from customer c
 		<where>
-			c.mobile_phone = #{customer.mobilePhone}
+			c.seq = #{customer.seq}
+			<if test="customer.mobilePhone != null">
+				and c.mobile_phone = #{customer.mobilePhone}
+			</if>
 		</where>
 	</select>
 	

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -73,6 +74,28 @@ public class CustomerController {
 	}
 
 	/**
+	 * 跳转到个人中心页面
+	 * @param customer
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/toOutnetCustomer")
+	public ModelAndView toOutnetCustomer(CustomerModel customer,HttpServletRequest request)throws Exception{
+		ModelAndView modelAndView = new ModelAndView("outnet/user");
+		Long seq = customer.getSeq();
+		if (seq != null) {//判断传回来的客户seq是否为空
+			CustomerModel customerModel = customerService.getCustomer(customer);
+			if (customerModel != null) {
+				modelAndView.addObject("customerModel", customerModel);
+			}
+		}else {
+			modelAndView.setViewName("outnet/login");
+		}
+		return modelAndView;
+	}
+	
+	/**
 	 * 添加或修改用户
 	 * 
 	 * @return
@@ -83,7 +106,7 @@ public class CustomerController {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		int resultTotal = 0;// 操作返回的记录条数
-		if (customer.getSeq() != null) {
+		if (customer.getMobilePhone() != null) {
 			resultTotal = customerService.updateCustomer(customer);
 		} else {
 			resultTotal = customerService.addCustomer(customer);

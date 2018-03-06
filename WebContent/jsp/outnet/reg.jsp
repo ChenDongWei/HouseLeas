@@ -3,18 +3,18 @@
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <rapid:override name="otherJs">
 	<script type="text/javascript">
-	$(document).ready(function(){
-		$("#register").click(function(){
-			var password = $("#password").val();
-			var confirm_password = $("#confirm_password").val();
-			if(password != confirm_password){
-				alert("两次输入的密码不一致，请重新输入！");
-				return;
-			}
-			
-			$("#signupForm").submit();
+		$(document).ready(function(){
+			$("#register").click(function(){
+				var password = $("#password").val();
+				var confirm_password = $("#confirm_password").val();
+				if(password != confirm_password){
+					alert("两次输入的密码不一致，请重新输入！");
+					return;
+				}
+				
+				$("#signupForm").submit();
+			});
 		});
-	});
 	</script>
 </rapid:override>
 <rapid:override name="content">

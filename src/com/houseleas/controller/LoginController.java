@@ -104,6 +104,19 @@ public class LoginController {
 	}
 	
 	/**
+	 * 客户退出登录
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request)throws Exception{
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return null;
+	}
+	
+	/**
 	 * bindControlModel:(办件信息传参model). <br/>
 	 * <b>Be careful：</b>InitBinder的value使用实体对象的驼峰命名法（也就是首字母小写）
 	 * 

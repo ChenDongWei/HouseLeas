@@ -1,7 +1,60 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
-
+<rapid:override name="otherJs">
+	<script type="text/javascript">
+		$(function(){
+			if ('${customerModel.sex}' == 2) {
+				$("#woman").prop("checked",true);
+			}
+			if ('${customerModel.sex}' != 2) {
+				$("#man").prop("checked",true);
+			}
+		});
+		
+		$(document).ready(function(){
+			$("#revise").click(function(){
+				var mobilePhone = '${resultCustomer.mobilePhone}';
+				var seq = '${resultCustomer.seq}';
+				var trueName = $("#trueName").val();
+				var sex = $("input[name='sex']:checked").val();
+				var age = $("#age").val();
+				var qq = $("#qq").val();
+				var url="${pageContext.request.contextPath}/customer/addOrUpdateCustomer.do";
+				if(seq == '' || mobilePhone == ''){
+					alert("当前帐号未登录！");
+					return;
+				}
+				$.ajax({
+				       url:url,
+				       type:'post',
+				       cache:false,
+				       data:{"customerModel.seq":seq,"customerModel.mobilePhone":mobilePhone,"customerModel.trueName":trueName,"customerModel.sex":sex,
+				    	   "customerModel.age":age, "customerModel.qq":qq},
+				       dataType:'json',
+				       contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				       beforeSend:function(){},
+				       success:function(data){
+				       	   var suc = data.successful;
+				           if(suc){
+				           		isSave = true;
+				           		alert(data.message);
+				           		top.dialog({id:'loadWin'}).close(isSave);
+				           }else{
+				           		top.dialog({title:'提示',content:'保存出现异常!'}).showModal();
+				           }
+				       },
+				       //top.dialog().close();
+				       error:function(){
+				       		top.dialog({title:'提示',content:'请求发生异常!'}).showModal();
+				       },
+				       complete:function(){}
+				
+			   });
+			});
+		});
+	</script>
+</rapid:override>
 <rapid:override name="content">
 	<div class="content">
 		<div class="width1190">
@@ -34,34 +87,32 @@
 						</tr>
 						<tr>
 							<th>姓 &nbsp;&nbsp;名：</th>
-							<td><input class="inp inw" type="text" id="title"
-								value="${resultCustomer.trueName}" maxlength="14"></td>
+							<td><input class="inp inw" type="text" id="trueName"
+								value="${customerModel.trueName}" maxlength="14"></td>
 						</tr>
 						<tr>
 							<th>性 &nbsp;&nbsp;别：</th>
-							<td><input type="radio" value="2" id="rbSex1" name="sex">
-									<label for="rbSex1">女</label> <input type="radio" value="1"
-									id="rbSex2" name="sex" checked> <label for="rbSex2">男</label> <span
-										id="Sex_Tip"></span></td>
+							<td>
+								<input type="radio" value="2" id="woman" name="sex" />女
+								<input type="radio" value="1" id="man" name="sex" />男
+							</td>
 						</tr>
 						<tr>
 							<th>年 &nbsp;&nbsp;龄：</th>
-							<td><input class="inp inw" type="text" id="age" value="${resultCustomer.age}"
-								onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></td>
+							<td><input class="inp inw" type="text" id="age" value="${customerModel.age}"></td>
 						</tr>
 
 
 						<tr>
 							<th>&nbsp;Q &nbsp; &nbsp;Q：</th>
 							<td><input class="inp inw" type="text" maxlength="15"
-								value="${resultCustomer.qq}" id="qq" onkeyup="return ValidateNumber(this,value)"></td>
+								value="${customerModel.qq}" id="qq"></td>
 						</tr>
 
 						<tr>
 							<th>&nbsp;</th>
-							<td colspan="2"><label class="butt" id="butt"> <input
-									type="submit" class="member_mod_buttom" onclick="mod_member()"
-									value="完成修改" />
+							<td colspan="2"><label class="butt" id="butt"> <input id="revise"
+									type="button" class="member_mod_buttom" value="完成修改" />
 							</label></td>
 						</tr>
 					</tbody>

@@ -23,12 +23,43 @@
 		var customerName = "游客";
 		var trueName = "${resultCustomer.trueName}";
 		var mobilePhone = "${resultCustomer.mobilePhone}";
+		if (mobilePhone != "") {
+			customerName = mobilePhone;
+			$("#logout").show();
+		}else {
+			$("#loginAndReg").show();
+		}
 		if(trueName != ""){
 			customerName = trueName;
-		}else if (mobilePhone != "") {
-			customerName = mobilePhone;
 		}
 		$("#customerName").html(customerName);
+		
+		$("#logout").click(function(){
+			var url = '${pageContext.request.contextPath}/login/logout.do';
+			$.ajax({
+			   url:url,
+		       type:'post',
+		       cache:false,
+		       dataType:'json',
+		       contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		       beforeSend:function(){},
+		       success:function(data){
+		       	   var suc = data.successful;
+		           if(suc){
+		           		isSave = true;
+		           		alert(data.message);
+		           		top.dialog({id:'loadWin'}).close(isSave);
+		           }else{
+		           		top.dialog({title:'提示',content:'保存出现异常!'}).showModal();
+		           }
+		       },
+		       //top.dialog().close();
+		       error:function(){
+		       		top.dialog({title:'提示',content:'请求发生异常!'}).showModal();
+		       },
+		       complete:function(){}
+			});
+		});
 	});
 	
 </script>
@@ -42,11 +73,17 @@
 		<div class="width1190">
 			<div class="fl"><span id="customerName" class="customerName"></span>您好，欢迎来到邻居大妈！</div>
 			<div class="fr">
-				<a href="${pageContext.request.contextPath}/jsp/outnet/login.jsp">登录</a>
+				<span id="loginAndReg" style="display:none">
+				  <a href="${pageContext.request.contextPath}/jsp/outnet/login.jsp">登录</a>
 				| <a href="${pageContext.request.contextPath}/jsp/outnet/reg.jsp">注册</a>
-				| <a href="javascript:;"
-					onclick="AddFavorite(window.location,document.title)">加入收藏</a> | <a
-					href="javascript:;" onclick="toManageLogin()">员工通道</a>
+				| 
+				</span>
+				<span id="logout" style="display:none">
+				  <a href="">退出登录</a>
+				| 
+				</span>
+				<a href="javascript:;" onclick="AddFavorite(window.location,document.title)">加入收藏</a>
+				| <a href="javascript:;" onclick="toManageLogin()">员工通道</a>
 			</div>
 			<div class="clears"></div>
 		</div>
@@ -70,48 +107,6 @@
 	<!--logo-phone/-->
 	<div class="list-nav">
 		<div class="width1190">
-			<div class="list">
-				<h3>房源分类</h3>
-				<div class="list-list">
-					<dl>
-						<dt>
-							<a href="javascript:;">房源区域</a>
-						</dt>
-						<dd>
-							<a href="javascript:;">智慧园</a> <a href="javascript:;">立民村</a> <a
-								href="javascript:;">塘口村</a> <a href="javascript:;">勤劳村</a> <a
-								href="javascript:;">芦胜村</a> <a href="javascript:;">知新村</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="pro_zu.jsp">租房</a>
-						</dt>
-						<dd>
-							<a href="pro_zu.jsp">租金</a> <a href="pro_zu.jsp">出租方式</a> <a
-								href="pro_zu.jsp">面积</a> <a href="pro_zu.jsp">房型</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="pro_xin.jsp">新房</a>
-						</dt>
-						<dd>
-							<a href="pro_xin.jsp">价格</a> <a href="pro_xin.jsp">面积</a> <a
-								href="pro_xin.jsp">房型</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="pro_er.jsp">二手房</a>
-						</dt>
-						<dd>
-							<a href="pro_er.jsp">价格</a> <a href="pro_er.jsp">面积</a> <a
-								href="pro_er.jsp">房型</a>
-						</dd>
-					</dl>
-				</div>
-			</div>
 			<!--list/-->
 			<ul class="nav">
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp">首页</a></li>
@@ -295,8 +290,10 @@
 	<div class="footer">
 		<div class="width1190">
 			<div class="fl">
-				<a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp"><strong>邻居大妈</strong></a><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a><a
-					href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a><a href="${pageContext.request.contextPath}/jsp/outnet/user.jsp">个人中心</a>
+				<a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp"><strong>邻居大妈</strong></a>
+				<a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a>
+				<a href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a>
+				<a href="${pageContext.request.contextPath}/customer/toOutnetCustomer.do?customerModel.seq=${resultCustomer.seq}">个人中心</a>
 			</div>
 			<div class="fr">
 				<dl>
