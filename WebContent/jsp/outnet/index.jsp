@@ -112,9 +112,10 @@
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp">首页</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">平台房源</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">个人房源</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/user_fabu.jsp">发布房源</a></li>
 				<li class="zhiding"><a href="javascript:;">指定租房</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a></li>
+				<li><a href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a></li>
+				<li><a href="${pageContext.request.contextPath}/customer/toOutnetCustomer.do?customerModel.seq=${resultCustomer.seq}">个人中心</a></li>
 				<div class="clears"></div>
 			</ul>
 			<!--nav/-->
@@ -252,7 +253,7 @@
 		</div>
 	</rapid:block>
 	<!--content/-->
-	<div class="xinren">
+	<div class="xinren footer">
 		<div class="width1190">
 			<dl
 				style="background:url(${pageContext.request.contextPath}/images/icon1.jpg) left center no-repeat;">
@@ -287,40 +288,6 @@
 		<!--width1190/-->
 	</div>
 	<!--xinren/-->
-	<div class="footer">
-		<div class="width1190">
-			<div class="fl">
-				<a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp"><strong>邻居大妈</strong></a>
-				<a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a>
-				<a href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a>
-				<a href="${pageContext.request.contextPath}/customer/toOutnetCustomer.do?customerModel.seq=${resultCustomer.seq}">个人中心</a>
-			</div>
-			<div class="fr">
-				<dl>
-					<dt>
-						<img src="${pageContext.request.contextPath}/images/erweima.png"
-							width="76" height="76" />
-					</dt>
-					<dd>
-						微信扫一扫<br />房价点评，精彩发布
-					</dd>
-				</dl>
-				<dl>
-					<dt>
-						<img src="${pageContext.request.contextPath}/images/erweima.png"
-							width="76" height="76" />
-					</dt>
-					<dd>
-						微信扫一扫<br />房价点评，精彩发布
-					</dd>
-				</dl>
-				<div class="clears"></div>
-			</div>
-			<div class="clears"></div>
-		</div>
-		<!--width1190/-->
-	</div>
-	<!--footer/-->
 	<div class="copy">
 		Copyright@ 2018 邻居大妈 版权所有 粤ICP备1234567号-0&nbsp;&nbsp;&nbsp;&nbsp;技术支持：<a
 			target="_blank" href="http://www.baidu.com/">百度</a>
