@@ -330,15 +330,17 @@
 		<h2>
 			指定租房 <span class="close">X</span>
 		</h2>
-		<form action="#" method="get">
+		<form action="${pageContext.request.contextPath}/appoinThouse/addAppoinThouse.do" method="post">
 			<div class="zhiding-list">
-				<label>选择区域：</label> <select>
-					<option>智慧园</option>
-					<option>立民村</option>
-					<option>塘口村</option>
-					<option>勤劳村</option>
-					<option>芦胜村</option>
-					<option>知新村</option>
+				<label>选择区域：</label> 
+				<select>
+					<option>--请选择--</option>
+					<option value="1">智慧园</option>
+					<option value="2">立民村</option>
+					<option value="3">塘口村</option>
+					<option value="4">勤劳村</option>
+					<option value="5">芦胜村</option>
+					<option value="6">知新村</option>
 				</select>
 			</div>
 			<div class="zhiding-list">

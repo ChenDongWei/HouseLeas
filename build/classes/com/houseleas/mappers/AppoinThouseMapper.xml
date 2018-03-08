@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.houseleas.dao.AppoinThouseDao">
+	
+	<select id="getAppoinThouseList" resultType="com.houseleas.entity.AppoinThouseModel">
+		select thouse.* from appoin_thouse thouse
+		<if test="start != null and size != null">
+				limit #{start}, #{size}
+		</if>
+	</select>
+	
+	<select id="getTotal" resultType="Long">
+		select count(*) from appoin_thouse
+	</select>
+	
+	<insert id="addAppoinThouse" parameterType="com.houseleas.entity.AppoinThouseModel">
+		insert into appoin_thouse values(null,#{appoinThouse.region},#{appoinThouse.price},#{appoinThouse.phone},
+		#{appoinThouse.remarks})
+	</insert>
+	
+	<update id="updateAppoinThouse" parameterType="com.houseleas.entity.AppoinThouseModel">
+		update appoin_thouse
+		<set>
+			<if test="appoinThouse.region != null and appoinThouse.region != ''">
+				region = #{appoinThouse.region},
+			</if>
+			<if test="appoinThouse.price != null and appoinThouse.price != ''">
+				price = #{appoinThouse.price},
+			</if>
+			<if test="appoinThouse.phone != null and appoinThouse.phone != ''">
+				phone = #{appoinThouse.phone},
+			</if>
+			<if test="appoinThouse.remarks != null and appoinThouse.remarks != ''">
+				remarks = #{appoinThouse.remarks},
+			</if>
+		</set>
+		<where>
+			seq = #{appoinThouse.seq}
+		</where>
+	</update>
+	
+	<delete id="deleteAppoinThouse" parameterType="Integer">
+		delete from appoin_thouse where seq in 
+		<foreach collection="seqs" index="index" item="seq" open="(" separator="," close=")">
+			#{seq}
+		</foreach>
+	</delete>
+</mapper> 
