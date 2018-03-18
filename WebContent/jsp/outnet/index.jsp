@@ -11,10 +11,12 @@
 <link type="text/css"
 	href="${pageContext.request.contextPath}/css/outnet.css"
 	rel="stylesheet" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/artdialog/artDialog.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/js.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/artdialog/artDialog.js"></script>
 <script type="text/javascript">
 	$(function() {
 		//导航定位
@@ -62,6 +64,19 @@
 		});
 	});
 	
+	//指定租房
+	function appoinThouse(){
+		top.dialog({
+			id:'appoinThouse',
+			url:'${pageContext.request.contextPath}/appoinThouse/toAppoinThouse.do',
+			width:500,
+			height:450,
+			title:'指定租房',
+			onclose:function(value){
+				
+			}
+		}).show();
+	}
 </script>
 <rapid:block name="otherJs"></rapid:block>
 </head>
@@ -112,7 +127,7 @@
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp">首页</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">平台房源</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">个人房源</a></li>
-				<li class="zhiding"><a href="javascript:;">指定租房</a></li>
+				<li><a href="javascript:appoinThouse();" >指定租房</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a></li>
 				<li><a href="${pageContext.request.contextPath}/customer/toOutnetCustomer.do?customerModel.seq=${resultCustomer.seq}">个人中心</a></li>
@@ -293,44 +308,5 @@
 			target="_blank" href="http://www.baidu.com/">百度</a>
 	</div>
 	<div class="bg100"></div>
-	<div class="zhidinggoufang">
-		<h2>
-			指定租房 <span class="close">X</span>
-		</h2>
-		<form action="${pageContext.request.contextPath}/appoinThouse/addAppoinThouse.do" method="post">
-			<div class="zhiding-list">
-				<label>选择区域：</label> 
-				<select>
-					<option>--请选择--</option>
-					<option value="1">智慧园</option>
-					<option value="2">立民村</option>
-					<option value="3">塘口村</option>
-					<option value="4">勤劳村</option>
-					<option value="5">芦胜村</option>
-					<option value="6">知新村</option>
-				</select>
-			</div>
-			<div class="zhiding-list">
-				<label>价格(元/月)：</label> <input type="text" />
-			</div>
-			<div class="zhiding-list">
-				<label>联系电话：</label> <input type="text" />
-			</div>
-			<div class="zhiding-list-textarea">
-				<label>备注：</label> <textarea id="sign" class="grtextarea"></textarea>
-			</div>
-			<div class="zhidingsub">
-				<input type="submit" value="提交" />
-			</div>
-		</form>
-		<div class="zhidingtext">
-			<h3>指定购房注意事宜：</h3>
-			<p>1、请详细输入您所需要租赁的房源信息(精确到小区)</p>
-			<p>2、制定租赁申请提交后，客服中心会在24小时之内与您取得联系</p>
-			<p>3、如有任何疑问，请随时拨打我们的电话：400-000-0000</p>
-		</div>
-		<!--zhidingtext/-->
-	</div>
-	<!--zhidinggoufang/-->
 </body>
 </html>

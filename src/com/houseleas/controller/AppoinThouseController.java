@@ -12,9 +12,12 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.houseleas.entity.AppoinThouseModel;
 import com.houseleas.entity.PageModel;
@@ -32,6 +35,20 @@ public class AppoinThouseController {
 	@Resource
 	private AppoinThouseService appoinThouseService;
 
+	/**
+	 * 跳转到指定租房页面
+	 * @param appoinThouse
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("toAppoinThouse")
+	public ModelAndView toAppoinThouse(AppoinThouseModel appoinThouse, HttpServletRequest request) throws Exception{
+		ModelAndView modelAndView = new ModelAndView("outnet/appoinThouse");
+		
+		return modelAndView;
+	}
+	
 	/**
 	 * 查询指定租房信息列表
 	 * @param page
@@ -123,5 +140,10 @@ public class AppoinThouseController {
 		result.put("success", true);
 		ResponseUtil.write(response, result);
 		return null;
+	}
+	
+	@InitBinder("appoinThouseModel")
+	public void bindAppoinThouseModel(WebDataBinder webDataBinder) {
+		webDataBinder.setFieldDefaultPrefix("appoinThouseModel."); // 参数前缀可以自定义，和页面传参方式一直即可
 	}
 }
