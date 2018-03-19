@@ -1,32 +1,23 @@
 package com.houseleas.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.houseleas.entity.CustomerModel;
-import com.houseleas.entity.PageModel;
 import com.houseleas.entity.EmployeeModel;
+import com.houseleas.entity.HouseModel;
 import com.houseleas.service.CustomerService;
 import com.houseleas.service.EmployeeService;
-import com.houseleas.util.ResponseUtil;
-import com.houseleas.util.StringUtil;
+import com.houseleas.service.HouseService;
 
 /**
  * 登录Control层
@@ -42,7 +33,31 @@ public class LoginController {
 	
 	@Resource
 	private CustomerService customerService;
+	
+	@Resource
+	private HouseService houseService;
 
+	/**
+	 * 跳转到网站主页
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/toIndex")
+	public ModelAndView toIndex() throws Exception{
+		ModelAndView modelAndView = new ModelAndView("outnet/index");
+		HouseModel houseModel = new HouseModel();
+		houseModel.setCategory(1L);//平台房源
+		//获取平台最新发布的4个房屋信息
+		List<HouseModel> ptHouseList = houseService.getHouseList(houseModel, 0, 4);
+		
+		houseModel.setCategory(2L);//个人房源
+		//获取个人最新发布的4个房屋信息
+		List<HouseModel> grHouseList = houseService.getHouseList(houseModel, 0, 4);
+		modelAndView.addObject("grHouseList", grHouseList);
+		return modelAndView;
+	}
+	
 	/**
 	 * 跳转到平台员工登录页面
 	 * 

@@ -36,6 +36,7 @@
 		}
 		$("#customerName").html(customerName);
 		
+		//退出按钮点击事件
 		$("#logout").click(function(){
 			var url = '${pageContext.request.contextPath}/login/logout.do';
 			$.ajax({
@@ -62,6 +63,7 @@
 		       complete:function(){}
 			});
 		});
+		
 	});
 	
 	//指定租房
@@ -124,7 +126,7 @@
 		<div class="width1190">
 			<!--list/-->
 			<ul class="nav">
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/index.jsp">首页</a></li>
+				<li><a href="${pageContext.request.contextPath}/login/toIndex.do">首页</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">平台房源</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">个人房源</a></li>
 				<li><a href="javascript:appoinThouse();" >指定租房</a></li>
@@ -145,10 +147,12 @@
 		<div class="content">
 			<div class="width1190">
 				<h2 class="title">
-					平台房源 <a href="pro_zu.jsp">更多&gt;&gt;</a>
+					平台房源 <a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">更多&gt;&gt;</a>
 				</h2>
 				<div class="index-fang-list">
-					<dl>
+					<c:forEach var="每个变量名字"   items="要迭代的list"   varStatus="每个对象的状态"
+								begin="循环从哪儿开始"    end="循环到哪儿结束"    step="循环的步长">
+						<dl>
 						<dt>
 							<a href="proinfo.jsp"><img
 								src="${pageContext.request.contextPath}/images/fang1.jpg"
@@ -161,6 +165,8 @@
 							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
 						</dd>
 					</dl>
+                  </c:forEach>
+					
 					<dl>
 						<dt>
 							<a href="proinfo.jsp"><img
@@ -205,7 +211,7 @@
 				<!--index-fang-list/-->
 	
 				<h2 class="title">
-					个人房源 <a href="pro_xin.jsp">更多&gt;&gt;</a>
+					个人房源 <a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">更多&gt;&gt;</a>
 				</h2>
 				<div class="index-fang-list">
 					<dl>
