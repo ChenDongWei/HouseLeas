@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 
 <rapid:override name="content">
@@ -54,194 +55,48 @@
 		<!--width1190/-->
 		<div class="width1190">
 			<div class="pro-left">
-				<dl>
-					<dt>
-						<a href="proinfo.jsp"><img src="${pageContext.request.contextPath}/images/fang1.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.jsp">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="${pageContext.request.contextPath}/images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
+				<c:forEach var="house" items="${houseList}" varStatus="M" >
+					<dl>
+						<dt>
+							<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg" width="286"
+								height="188" /></a>
+						</dt>
+						<dd>
+							<h3>
+								<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
+							</h3>
+							<div class="pro-wei">
+								<img src="${pageContext.request.contextPath}/images/weizhi.png" width="12" height="16" /> <strong
+									class="red">智慧园</strong>
+							</div>
+							<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
+							<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
+						</dd>
+						<div class="price">
+							¥ <strong>2890</strong><span class="font12">元/月</span>
 						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
-				<dl>
-					<dt>
-						<a href="proinfo.html"><img src="images/fang2.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
-						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
-				<dl>
-					<dt>
-						<a href="proinfo.html"><img src="images/fang3.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
-						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
-				<dl>
-					<dt>
-						<a href="proinfo.html"><img src="images/fang4.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
-						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
-				<dl>
-					<dt>
-						<a href="proinfo.html"><img src="images/fang5.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
-						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
-				<dl>
-					<dt>
-						<a href="proinfo.html"><img src="images/fang6.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
-						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
-				<dl>
-					<dt>
-						<a href="proinfo.html"><img src="images/fang7.jpg" width="286"
-							height="188" /></a>
-					</dt>
-					<dd>
-						<h3>
-							<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-						</h3>
-						<div class="pro-wei">
-							<img src="images/weizhi.png" width="12" height="16" /> <strong
-								class="red">智慧园</strong>
-						</div>
-						<div class="pro-fang">一室一厅 38平 南 楼层中部/6层</div>
-						<div class="pra-fa">发布人：张先生 发布时间：2015-12-03</div>
-					</dd>
-					<div class="price">
-						¥ <strong>2890</strong><span class="font12">元/月</span>
-					</div>
-					<div class="clears"></div>
-				</dl>
+						<div class="clears"></div>
+					</dl>
+				</c:forEach>
 			</div>
 			<!--pro-left/-->
 			<div class="pro-right">
-				<h2 class="right-title">新上房源</h2>
+				<h2 class="right-title">热门房源</h2>
 				<div class="right-pro">
-					<dl>
-						<dt>
-							<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang8.jpg" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-							</h3>
-							<div class="pro-fang">一室一厅 38平 南</div>
-							<div class="right-price">1100元/月</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang7.jpg" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-							</h3>
-							<div class="pro-fang">一室一厅 38平 南</div>
-							<div class="right-price">1100元/月</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang6.jpg" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
-							</h3>
-							<div class="pro-fang">一室一厅 38平 南</div>
-							<div class="right-price">1100元/月</div>
-						</dd>
-					</dl>
+					<c:forEach var="hotHouse" items="${hotHouseList}" varStatus="M" >
+						<dl>
+							<dt>
+								<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg" /></a>
+							</dt>
+							<dd>
+								<h3>
+									<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
+								</h3>
+								<div class="pro-fang">一室一厅 38平 南</div>
+								<div class="right-price">1100元/月</div>
+							</dd>
+						</dl>
+					</c:forEach>
 				</div>
 				<!--right-pro/-->
 			</div>

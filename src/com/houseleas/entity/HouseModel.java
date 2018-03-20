@@ -25,6 +25,7 @@ public class HouseModel implements Serializable {
 	private Long decor;// 装修风格：1-简单装修 2-精美装修 3-其他
 	private String neighbourhoods;// 所在小区
 	private Long payWay;// 押付方式：1-免押金 2-押一付一 3-押二付一 4-押一付三 5-押二付二 6-其他
+	private Long isHot;//是否热门房源(广告房源)
 	private String houseYear;// 建筑年代
 	private String describe;// 描述
 	private Long category;// 房屋类别：1-平台 2-个人
@@ -163,6 +164,14 @@ public class HouseModel implements Serializable {
 
 	public void setCategory(Long category) {
 		this.category = category;
+	}
+
+	public Long getIsHot() {
+		return isHot;
+	}
+
+	public void setIsHot(Long isHot) {
+		this.isHot = isHot;
 	}
 
 }

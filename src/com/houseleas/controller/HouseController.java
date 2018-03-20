@@ -12,15 +12,17 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.houseleas.entity.EmployeeModel;
+import com.houseleas.entity.HouseModel;
 import com.houseleas.entity.PageModel;
-import com.houseleas.service.EmployeeService;
+import com.houseleas.service.HouseService;
 import com.houseleas.util.ResponseUtil;
-import com.houseleas.util.StringUtil;
 
 /**
  * 出租房屋Control层
@@ -31,8 +33,35 @@ import com.houseleas.util.StringUtil;
 @RequestMapping("/house")
 public class HouseController {
 	@Resource
-	private EmployeeService employeeService;
+	private HouseService houseService;
 
+	@RequestMapping("/toHouse")
+	public ModelAndView toHouse(HouseModel houseModel, HttpServletRequest request)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		String category = request.getParameter("category");
+		houseModel.setCategory(Long.valueOf(category));
+		if ("1".equals(category)) {//平台房源
+			modelAndView.setViewName("outnet/pro_pingtai");
+			//获取平台最新发布的房屋信息
+			List<HouseModel> houseList = houseService.getHouseList(houseModel, 0, 1000);
+			//获取5个平台热门房源信息(也就是打广告)
+			houseModel.setIsHot(1L);
+			List<HouseModel> hotHouseList = houseService.getHouseList(houseModel, 0, 5);
+			modelAndView.addObject("houseList", houseList);
+			modelAndView.addObject("hotHouseList", hotHouseList);
+		}else if ("2".equals(category)) {//个人房源
+			modelAndView.setViewName("outnet/pro_geren");
+			//获取个人最新发布的房屋信息
+			List<HouseModel> houseList = houseService.getHouseList(houseModel, 0, 1000);
+			//获取5个个人热门房源信息(也就是打广告)
+			houseModel.setIsHot(1L);
+			List<HouseModel> hotHouseList = houseService.getHouseList(houseModel, 0, 5);
+			modelAndView.addObject("houseList", houseList);
+			modelAndView.addObject("hotHouseList", hotHouseList);
+		}
+		return modelAndView;	
+	}
+	
 	/**
 	 * 查询出租房屋列表
 	 * 
@@ -43,22 +72,22 @@ public class HouseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/getEmployeeList")
+	@RequestMapping("/getHouseList")
 	@ResponseBody
-	public Map<String, Object> getEmployeeList(
+	public Map<String, Object> getHouseList(
 			@RequestParam(value = "page", required = true) String page,
 			@RequestParam(value = "rows", required = true) String rows,
-			EmployeeModel house, HttpServletRequest request,
+			HouseModel houseModel,
+			HouseModel house, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		PageModel pageModel = new PageModel(Integer.parseInt(page),
 				Integer.parseInt(rows));
-		String userCode = StringUtil.formatLike(house.getUserCode());
 		int start = pageModel.getStart();
 		int size = pageModel.getPageSize();
-		List<EmployeeModel> employeeList = employeeService.getEmployeeList(userCode, start, size);
-		Long total = employeeService.getTotal(userCode, start, size);
+		List<HouseModel> houseList = houseService.getHouseList(houseModel, start, size);
+		Long total = houseService.getTotal(houseModel, start, size);
 		JSONObject result = new JSONObject();
-		JSONArray jsonArray = JSONArray.fromObject(employeeList);
+		JSONArray jsonArray = JSONArray.fromObject(houseList);
 		result.put("rows", jsonArray);
 		result.put("total", total);
 		ResponseUtil.write(response, result);
@@ -71,14 +100,14 @@ public class HouseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/addOrUpdateEmployee")
-	public String addOrUpdateEmployee(EmployeeModel house, HttpServletRequest request,
+	@RequestMapping("/addOrUpdateHouse")
+	public String addOrUpdateHouse(HouseModel house, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		int resultTotal = 0;// 操作返回的记录条数
 		if (house.getSeq() != null) {
-			resultTotal = employeeService.updateEmployee(house);
+			resultTotal = houseService.updateHouse(house);
 		} else {
-			resultTotal = employeeService.addEmployee(house);
+			resultTotal = houseService.addHouse(house);
 		}
 		JSONObject result = new JSONObject();
 		if (resultTotal > 0) {
@@ -98,8 +127,8 @@ public class HouseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/deleteEmployee")
-	public String deleteEmployee(@RequestParam(value = "seqs") String seqs,
+	@RequestMapping("/deleteHouse")
+	public String deleteHouse(@RequestParam(value = "seqs") String seqs,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		String[] seqsStr = seqs.split(",");
@@ -107,10 +136,15 @@ public class HouseController {
 		for (String seq : seqsStr) {
 			list.add(Integer.parseInt(seq));
 		}
-		employeeService.deleteEmployee(list);
+		houseService.deleteHouse(list);
 		JSONObject result = new JSONObject();
 		result.put("success", true);
 		ResponseUtil.write(response, result);
 		return null;
+	}
+	
+	@InitBinder("houseModel")
+	public void bindHouseModel(WebDataBinder webDataBinder) {
+		webDataBinder.setFieldDefaultPrefix("houseModel."); // 参数前缀可以自定义，和页面传参方式一直即可
 	}
 }

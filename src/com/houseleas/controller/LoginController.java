@@ -54,6 +54,7 @@ public class LoginController {
 		houseModel.setCategory(2L);//个人房源
 		//获取个人最新发布的4个房屋信息
 		List<HouseModel> grHouseList = houseService.getHouseList(houseModel, 0, 4);
+		modelAndView.addObject("ptHouseList", ptHouseList);
 		modelAndView.addObject("grHouseList", grHouseList);
 		return modelAndView;
 	}
@@ -128,7 +129,12 @@ public class LoginController {
 	public String logout(HttpServletRequest request)throws Exception{
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return null;
+		String isManage = request.getParameter("manage");
+		if ("1".equals(isManage)) {
+			return "redirect:/jsp/manage/login/login.jsp";
+		}else {
+			return null;
+		}
 	}
 	
 	/**

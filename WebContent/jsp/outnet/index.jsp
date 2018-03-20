@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.rapid-framework.org.cn/rapid" prefix="rapid"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -127,8 +128,8 @@
 			<!--list/-->
 			<ul class="nav">
 				<li><a href="${pageContext.request.contextPath}/login/toIndex.do">首页</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">平台房源</a></li>
-				<li><a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">个人房源</a></li>
+				<li><a href="${pageContext.request.contextPath}/house/toHouse.do?category=1">平台房源</a></li>
+				<li><a href="${pageContext.request.contextPath}/house/toHouse.do?category=2">个人房源</a></li>
 				<li><a href="javascript:appoinThouse();" >指定租房</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/about.jsp">关于我们</a></li>
 				<li><a href="${pageContext.request.contextPath}/jsp/outnet/contact.jsp">联系我们</a></li>
@@ -147,125 +148,48 @@
 		<div class="content">
 			<div class="width1190">
 				<h2 class="title">
-					平台房源 <a href="${pageContext.request.contextPath}/jsp/outnet/pro_pingtai.jsp">更多&gt;&gt;</a>
+					平台房源 <a href="${pageContext.request.contextPath}/house/toHouse.do?category=1">更多&gt;&gt;</a>
 				</h2>
 				<div class="index-fang-list">
-					<c:forEach var="每个变量名字"   items="要迭代的list"   varStatus="每个对象的状态"
-								begin="循环从哪儿开始"    end="循环到哪儿结束"    step="循环的步长">
+					<c:forEach var="ptHouse" items="${ptHouseList}" varStatus="M" >
 						<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang1.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>虹桥乐亭
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
-                  </c:forEach>
+							<dt>
+								<a href="proinfo.jsp"><img
+									src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg"
+									width="286" height="188" /></a>
+							</dt>
+							<dd>
+								<h3>
+									<a href="proinfo.jsp">${ptHouse.houseName}</a>
+								</h3>
+								<div class="hui">${ptHouse.houseType} | ${ptHouse.acreage} | ${ptHouse.decor}</div>
+							</dd>
+						</dl>
+                  	</c:forEach>
 					
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang2.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>静安豪景
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang3.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>中凯城市之光(静安)
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang4.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>水塘小区
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
 					<div class="clears"></div>
 				</div>
 				<!--index-fang-list/-->
 	
 				<h2 class="title">
-					个人房源 <a href="${pageContext.request.contextPath}/jsp/outnet/pro_geren.jsp">更多&gt;&gt;</a>
+					个人房源 <a href="${pageContext.request.contextPath}/house/toHouse.do?category=2">更多&gt;&gt;</a>
 				</h2>
 				<div class="index-fang-list">
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang5.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>虹桥乐亭
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang6.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>静安豪景
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang7.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>中凯城市之光(静安)
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<a href="proinfo.jsp"><img
-								src="${pageContext.request.contextPath}/images/fang8.jpg"
-								width="286" height="188" /></a>
-						</dt>
-						<dd>
-							<h3>
-								<a href="proinfo.jsp"></a>水塘小区
-							</h3>
-							<div class="hui">3室2厅2卫 | 147m² | 精装修</div>
-						</dd>
-					</dl>
+					<c:forEach var="grHouse" items="${grHouseList}" varStatus="M" >
+						<dl>
+							<dt>
+								<a href="proinfo.jsp"><img
+									src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg"
+									width="286" height="188" /></a>
+							</dt>
+							<dd>
+								<h3>
+									<a href="proinfo.jsp">${grHouse.houseName}</a>
+								</h3>
+								<div class="hui">${grHouse.houseType} | ${grHouse.acreage} | ${grHouse.decor}</div>
+							</dd>
+						</dl>
+                  	</c:forEach>
 					<div class="clears"></div>
 				</div>
 				<!--index-fang-list/-->

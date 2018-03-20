@@ -12,6 +12,8 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -72,13 +74,13 @@ public class EmployeeController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/addOrUpdateEmployee")
-	public String addOrUpdateEmployee(EmployeeModel employee, HttpServletRequest request,
+	public String addOrUpdateEmployee(EmployeeModel employeeModel, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		int resultTotal = 0;// 操作返回的记录条数
-		if (employee.getSeq() != null) {
-			resultTotal = employeeService.updateEmployee(employee);
+		if (employeeModel.getSeq() != null) {
+			resultTotal = employeeService.updateEmployee(employeeModel);
 		} else {
-			resultTotal = employeeService.addEmployee(employee);
+			resultTotal = employeeService.addEmployee(employeeModel);
 		}
 		JSONObject result = new JSONObject();
 		if (resultTotal > 0) {
@@ -112,5 +114,30 @@ public class EmployeeController {
 		result.put("success", true);
 		ResponseUtil.write(response, result);
 		return null;
+	}
+	
+	/**
+	 * 修改用户密码
+	 * @param employee
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/modifyPassword")
+	public String modifyPassword(EmployeeModel employeeModel, HttpServletResponse response)throws Exception{
+		int resultTotal=employeeService.updateEmployee(employeeModel);
+		JSONObject result=new JSONObject();
+		if(resultTotal>0){
+			result.put("success", true);
+		}else{
+			result.put("success", false);
+		}
+		ResponseUtil.write(response, result);
+		return null;
+	}
+	
+	@InitBinder("employeeModel")
+	public void bindEmployeeModel(WebDataBinder webDataBinder) {
+		webDataBinder.setFieldDefaultPrefix("employee."); // 参数前缀可以自定义，和页面传参方式一直即可
 	}
 }
