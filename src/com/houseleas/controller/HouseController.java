@@ -35,6 +35,13 @@ public class HouseController {
 	@Resource
 	private HouseService houseService;
 
+	/**
+	 * 跳转到房屋列表展示页面
+	 * @param houseModel
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping("/toHouse")
 	public ModelAndView toHouse(HouseModel houseModel, HttpServletRequest request)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
@@ -60,6 +67,24 @@ public class HouseController {
 			modelAndView.addObject("hotHouseList", hotHouseList);
 		}
 		return modelAndView;	
+	}
+	
+	/**
+	 * 查看房屋详细信息
+	 * @param houseModel
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/toHouseDetail")
+	public ModelAndView toHouseDetail(HouseModel houseModel, HttpServletRequest request)throws Exception{
+		ModelAndView modelAndView = new ModelAndView("outnet/proinfo");
+		List<HouseModel> houseList = houseService.getHouseList(houseModel, 0, 1);
+		if (houseList != null && houseList.size() > 0) {
+			houseModel = houseList.get(0);
+		}
+		modelAndView.addObject("houseModel", houseModel);
+		return modelAndView;
 	}
 	
 	/**

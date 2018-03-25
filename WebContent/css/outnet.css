@@ -287,13 +287,14 @@ img{ max-width:100%; height:auto;}
 .proImg img{width:420px; height:320px;/*max-width:420px;max-height:420px;width:auto !important;height:auto !important;_width:420px;_height:420px;*/}
 .proText{width:535px;margin:30px 0;}
 .proTitle{ font-size:24px; line-height:40px; font-weight:400;padding:4px 0;border-bottom:#ccc 1px dotted;}
-.proText1{font-size:14px; line-height:25px;padding:8px 0 0 0;}
+.proText1{font-size:16px; line-height:24px;padding:8px 0 0 0;}
 .proText1 span{margin-right:15px;}
 .xun-car{padding:10px 0;}
 .xun-car a{ display:inline-block;color:#fff;width:205px;text-align:center; height:50px; line-height:50px;font-size:18px;margin-right:7px;}
 .xun-car a:hover{ opacity:0.8;}
-.xun-car .xwjg{ display:inline-block; text-align:center; background:url(../images/proxujian.gif) left center no-repeat;}
-.xun-car .projrgwc{ background:url(../images/procar.gif) left top no-repeat;padding-left:20px;width:185px; }
+.fwjg{ font-size: 32px; font-weight: bold; color: #ff552e;}
+.jgdw{ font-size: 22px; color: #ff552e; font-style: normal;}
+.xun-car .projrgwc{ display:inline-block; text-align:center; background:url(../images/proxujian.gif) left center no-repeat;}
 .projrsc{height:30px; }
 .projrsc a{ display:block;height:30px;line-height:30px;color:#f90; font-size:14px;}
 .projrsc a span{ display:inline-block;width:15px;height:15px; margin-right:7px; position:relative;top:2px; background:url(../images/jrsc.jpg) left center no-repeat;}

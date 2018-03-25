@@ -58,12 +58,12 @@
 				<c:forEach var="house" items="${houseList}" varStatus="M" >
 					<dl>
 						<dt>
-							<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg" width="286"
+							<a href="${pageContext.request.contextPath}/house/toHouseDetail.do?houseModel.seq=${house.seq}"><img src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg" width="286"
 								height="188" /></a>
 						</dt>
 						<dd>
 							<h3>
-								<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
+								<a href="${pageContext.request.contextPath}/house/toHouseDetail.do?houseModel.seq=${house.seq}">中装一室一厅，楼层好，采光足，稀缺房源</a>
 							</h3>
 							<div class="pro-wei">
 								<img src="${pageContext.request.contextPath}/images/weizhi.png" width="12" height="16" /> <strong
@@ -86,11 +86,11 @@
 					<c:forEach var="hotHouse" items="${hotHouseList}" varStatus="M" >
 						<dl>
 							<dt>
-								<a href="proinfo.html"><img src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg" /></a>
+								<a href="${pageContext.request.contextPath}/house/toHouseDetail.do?houseModel.seq=${house.seq}"><img src="${pageContext.request.contextPath}/images/fang${M.index +1}.jpg" /></a>
 							</dt>
 							<dd>
 								<h3>
-									<a href="proinfo.html">中装一室一厅，楼层好，采光足，稀缺房源</a>
+									<a href="${pageContext.request.contextPath}/house/toHouseDetail.do?houseModel.seq=${house.seq}">中装一室一厅，楼层好，采光足，稀缺房源</a>
 								</h3>
 								<div class="pro-fang">一室一厅 38平 南</div>
 								<div class="right-price">1100元/月</div>

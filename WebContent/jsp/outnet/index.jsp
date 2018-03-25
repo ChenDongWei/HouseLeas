@@ -111,7 +111,7 @@
 	<div class="logo-phone">
 		<div class="width1190">
 			<h1 class="logo">
-				<a href="index.jsp"><img
+				<a href="${pageContext.request.contextPath}/login/toIndex.do"><img
 					src="${pageContext.request.contextPath}/images/logo.png"
 					width="163" height="59" /></a>
 			</h1>

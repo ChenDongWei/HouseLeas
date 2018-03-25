@@ -11,12 +11,13 @@
 			<div class="proText fr">
 				<h3 class="proTitle">上海市智慧园 两室一厅 一厨一卫</h3>
 				<div class="proText1">
-					编号：312737<br /> 售价：225万<br /> 户型：2室 1厅 1卫<br /> 面积：70.0㎡<br />
-					朝向：南<br /> 楼层：2层/18层<br /> 装修：简单装修<br /> 小区：甘露园南里一区（朝阳 甘露园）1995年
+					<span class="fwjg">${houseModel.rent}<em class="jgdw">元/月</em></span><span>${houseModel.payWay}</span><br/> 
+					编号：${houseModel.seq}<br/> 户型：${houseModel.houseType}<br/> 面积：${houseModel.acreage}㎡<br/>
+					朝向：${houseModel.orientation}<br/> 楼层：${houseModel.floor}层/${houseModel.allFloor}层<br/> 
+					装修：${houseModel.decor}<br/> 小区：${houseModel.neighbourhoods} ${houseModel.houseYear}年
 				</div>
 				<div class="xun-car">
-					<a href="javascript:;" class="xwjg">¥<strong>3600</strong>元
-					</a> <a href="javascript:;" class="projrgwc">关注房源</a>
+					<a href="javascript:;" class="projrgwc">关注房源</a>
 				</div>
 				<!--xun-car/-->
 			</div>

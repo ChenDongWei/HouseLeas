@@ -26,6 +26,15 @@ public interface HouseService {
 	public Long getTotal(HouseModel houseModel, int start, int size);
 	
 	/**
+	 * 查看房屋详细信息
+	 * @param houseModel
+	 * @param start
+	 * @param size
+	 * @return
+	 */
+	public HouseModel getHouseDetail(HouseModel houseModel, int start, int size);
+	
+	/**
 	 * 添加出租房屋
 	 * @param houseModel
 	 * @return

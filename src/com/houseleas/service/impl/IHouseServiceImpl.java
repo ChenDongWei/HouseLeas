@@ -47,4 +47,9 @@ public class IHouseServiceImpl implements HouseService {
 	public int deleteHouse(List<Integer> seqs) {
 		return houseDao.deleteHouse(seqs);
 	}
+
+	@Override
+	public HouseModel getHouseDetail(HouseModel houseModel, int start, int size) {
+		return houseDao.getHouseDetail(houseModel);
+	}
 }

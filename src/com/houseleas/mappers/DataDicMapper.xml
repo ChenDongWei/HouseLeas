@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.houseleas.dao.DataDicDao">
+
+	<select id="find" parameterType="Map" resultType="com.houseleas.entity.DataDicModel">
+		select * from data_dic
+		<where>
+			<if test="dataDic.dataDicName!=null and dataDic.dataDicName!='' ">
+				and data_dic_name = #{dataDic.dataDicName}
+			</if>
+			<if test="dataDic.dataDicValue!=null and dataDic.dataDicValue!='' ">
+				and data_dic_value like #{dataDic.dataDicValue}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	
+	<select id="findAll" resultType="com.houseleas.entity.DataDicModel">
+		select distinct data_dic_name from data_dic
+	</select>
+	
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from data_dic
+		<where>
+			<if test="dataDic.dataDicName!=null and dataDic.dataDicName!='' ">
+				and data_dic_name = #{dataDic.dataDicName}
+			</if>
+			<if test="dataDic.dataDicValue!=null and dataDic.dataDicValue!='' ">
+				and data_dic_value like #{dataDic.dataDicValue}
+			</if>
+		</where>
+	</select>
+	
+	<insert id="add" parameterType="com.houseleas.entity.DataDicModel">
+		insert into data_dic values(null,#{dataDic.dataDicName},#{dataDic.dataDicValue})
+	</insert>
+	
+	<update id="update" parameterType="com.houseleas.entity.DataDicModel">
+		update data_dic
+		<set>
+			<if test="dataDic.dataDicName!=null and dataDic.dataDicName!='' ">
+				data_dic_name=#{dataDic.dataDicName},
+			</if>
+			<if test="dataDic.dataDicValue!=null and dataDic.dataDicValue!='' ">
+				data_dic_value=#{dataDic.dataDicValue},
+			</if>
+		</set>
+		where seq=#{seq}
+	</update>
+	
+	<delete id="delete" parameterType="Integer">
+		delete from data_dic where seq in 
+		<foreach collection="seqs" index="index" item="seq" open="(" separator="," close=")">
+			#{seq}
+		</foreach>
+	</delete>
+</mapper> 

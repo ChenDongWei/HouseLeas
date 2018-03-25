@@ -1,6 +1,7 @@
 package com.houseleas.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 出租房屋实体
@@ -29,6 +30,7 @@ public class HouseModel implements Serializable {
 	private String houseYear;// 建筑年代
 	private String describe;// 描述
 	private Long category;// 房屋类别：1-平台 2-个人
+	private Date creatDate;//创建时间
 
 	public Long getSeq() {
 		return seq;
@@ -172,6 +174,14 @@ public class HouseModel implements Serializable {
 
 	public void setIsHot(Long isHot) {
 		this.isHot = isHot;
+	}
+
+	public Date getCreatDate() {
+		return creatDate;
+	}
+
+	public void setCreatDate(Date creatDate) {
+		this.creatDate = creatDate;
 	}
 
 }

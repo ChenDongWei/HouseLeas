@@ -49,4 +49,11 @@ public interface HouseDao {
 	 * @return
 	 */
 	public int deleteHouse(@Param("seqs")List<Integer> seqs);
+
+	/**
+	 * 查看房屋详细信息
+	 * @param houseModel
+	 * @return
+	 */
+	public HouseModel getHouseDetail(@Param("house")HouseModel houseModel);
 }

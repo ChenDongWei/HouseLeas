@@ -7,8 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getHouseList" resultType="com.houseleas.entity.HouseModel">
 		select h.* from house h
 		<where>
+			<if test="house.seq != null">
+				h.seq = #{house.seq}
+			</if>
 			<if test="house.category != null">
-				h.category = #{house.category}
+				and h.category = #{house.category}
 			</if>
 			<if test="house.isHot != null">
 				and h.is_hot = #{house.isHot}
