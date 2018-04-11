@@ -123,8 +123,11 @@
 <div region="west" style="width: 200px" title="导航菜单" split="true">
 	<div class="easyui-accordion" data-options="fit:true,border:false">
 		<div title="员工管理" data-options="selected:true,iconCls:'icon-yxgl'" style="padding: 10px">
-			<a href="javascript:openTab('员工管理','employeeManage.jsp','icon-yxjhgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-yxjhgl'" style="width: 150px">营销机会管理</a>
-			<a href="javascript:openTab('客户开发计划','cusdevplanManage.jsp','icon-khkfjh')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khkfjh'" style="width: 150px">客户开发计划</a>
+			<a href="javascript:openTab('数据字典管理','manage/base/dataDicManage.jsp','icon-sjzdgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-sjzdgl'" style="width: 150px;">数据字典管理</a>
+			<a href="javascript:openTab('客户信息查询','manage/base/customerManage.jsp','icon-cpxxgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-cpxxgl'" style="width: 150px;">客户信息查询</a>
+			<a href="javascript:openTab('员工信息管理','manage/base/employeeManage.jsp','icon-user')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-user'" style="width: 150px;">员工信息管理</a>
+			<a href="javascript:openTab('平台房屋管理','manage/base/pintaiManage.jsp','icon-khxxgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'" style="width: 150px;">平台房屋管理</a>
+			<a href="javascript:openTab('个人房屋管理','manage/base/gerenManage.jsp','icon-khxxgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'" style="width: 150px;">个人房屋管理</a>
 		</div>
 		<div title="客户管理"  data-options="iconCls:'icon-khgl'" style="padding:10px;">
 			<a href="javascript:openTab('客户信息管理','customerManage.jsp','icon-khxxgl')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-khxxgl'" style="width: 150px;">客户信息管理</a>

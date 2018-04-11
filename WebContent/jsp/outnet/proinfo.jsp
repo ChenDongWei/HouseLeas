@@ -5,7 +5,7 @@
 	<div class="content">
 		<div class="width1190" style="width: 1000px;">
 			<div class="proImg fl">
-				<img src="${pageContext.request.contextPath}/images/fangt1.jpg" />
+				<img src="/temp/test001.jpg" />
 			</div>
 			<!--proImg/-->
 			<div class="proText fr">

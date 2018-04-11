@@ -45,7 +45,7 @@ public class DataDicController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/getDataDicList")
-	public String getDataDicList(@RequestParam(value="page",required=false)String page,@RequestParam(value="rows",required=false)String rows,DataDicModel dataDicModel,HttpServletResponse response)throws Exception{
+	public String getDataDicList(@RequestParam(value="page",required=true)String page,@RequestParam(value="rows",required=true)String rows,DataDicModel dataDicModel,HttpServletResponse response)throws Exception{
 		PageModel pageModel = new PageModel(Integer.parseInt(page), Integer.parseInt(rows));
 		Map<String,Object> map=new HashMap<String,Object>();
 		dataDicModel.setDataDicValue(StringUtil.formatLike(dataDicModel.getDataDicValue()));
